@@ -1,0 +1,69 @@
+<html>
+<head>
+	<meta>
+	<title>Javascript Demo</title>
+</head>
+<body>
+
+&#9835;&#9834;&#9835; &#9786; <div id="magic"></div>
+
+<script>
+	// start of the immediate function closed on line 35 and called immedietley
+	(function () {
+		var words = ["With so much", "drama", "in the LBC", "it's hard being", "Snoop", "D.. o.. double G"],
+			el = document.getElementById('magic'),
+			word_counter = 0,
+			character_counter = 0;
+
+
+			/* CharCode(160) is the reference for '&nbsp;' */
+
+		function updateText()
+		{
+			el.innerHTML = el.innerHTML+words[word_counter][character_counter++];
+
+			if(character_counter == words[word_counter].length + 1) // add one to word length 
+			{
+				word_counter++; //choose a different word
+				character_counter = 0;	//start over with the first character of the word
+				el.innerHTML = ''; //set the html to be blank
+
+			//if we're displaying the last word, go back to the first word
+			if(word_counter == words.length)
+				word_counter = 0;
+			}
+		} 
+
+		setInterval(updateText,300);
+	}) ();	
+
+</script>
+</body>
+<style>
+body {
+	background-color:black;
+	font-family: monospace;
+	color:white;
+	font-size:50px;
+	text-align: center;
+	margin-top:20%;
+}
+
+#magic {
+	color: #777;
+	border-right: 1px solid #777;
+	padding-right: 7px;
+	display: inline;
+}
+</style>
+<!--
+Please work on the following features after you go through the codes and understand what's happening.
+
+    1) there is a bug where the last character in the word doesn't show up! Please fix this error.
+    2) there is a bug where the space in the words do not appear correctly. For example for the word "being helpful" when it shows "being " after showing "being" the space should make the right border/cursor move a little bit to the right (to account for the space being entered by the user) yet it doesn't work correctly. Please fix this error. (Hint: you may want to use &nbsp; to represent space).
+    3) the current codes are creating lots of global variables. we don't like this. use what you learned about immediate function to wrap all of those codes in a single immediate function so that you don't introduce any global variables. Once done, put this in your GitHub and show your friends! To check whether the variables you created (e.g. el, word_counter, etc) are not global variables, try to console.log these variables outside the immediate function to make sure these variables are not accessible outside the immediate function).
+    4) submit a pull request through GitHub. :)
+    5) put this on your GitHub; also upload a simple txt file with a link to your GitHub project for us to review
+
+-->
+</html>
